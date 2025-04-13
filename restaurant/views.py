@@ -1,5 +1,6 @@
 from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.renderers import JSONRenderer
 from .models import *
 from .serializers import *
 
@@ -20,8 +21,9 @@ class MenuCategoryRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIVie
 class MenuItemListCreateView(generics.ListCreateAPIView):
     queryset = MenuItem.objects.filter(is_available=True)
     serializer_class = MenuItemSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['category', 'is_available']
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]  #DjangoFilterBackend, 
+    # filterset_fields = ['category', 'is_available']
+    # renderer_classes = [JSONRenderer]
     search_fields = ['name', 'description']
     ordering_fields = ['price', 'preparation_time']
 

@@ -53,10 +53,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'restaurant_project.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [],     #os.path.join(BASE_DIR, 'templates')
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,6 +72,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'restaurant_project.wsgi.application'
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ],
+    # 'DEFAULT_RENDERER_CLASSES': [
+    #     # 'rest_framework.renderers.JSONRenderer',
+    #     'rest_framework.renderers.BrowsableAPIRenderer',
+    # ]
+}
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 

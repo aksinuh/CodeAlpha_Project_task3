@@ -7,11 +7,24 @@ class MenuCategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class MenuItemSerializer(serializers.ModelSerializer):
-    category = MenuCategorySerializer(read_only=True)
-    
+    # category = MenuCategorySerializer(read_only=True)
+    category_name = serializers.CharField(source='category.name', read_only=True)
     class Meta:
         model = MenuItem
-        fields = '__all__'
+        fields = [
+            "id",
+            'name',
+            'description',
+            'price',
+            'category',
+            "category_name",
+            'preparation_time',
+            "is_available"
+        ]
+        extra_kwargs = {
+            'category': {'write_only': True}  # Yalnız yazma üçün, oxuma zamanı göstərilməyəcək
+        }
+        
 
 class TableSerializer(serializers.ModelSerializer):
     status_display = serializers.CharField(source='get_status_display', read_only=True)
