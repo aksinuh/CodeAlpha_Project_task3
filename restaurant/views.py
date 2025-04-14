@@ -21,11 +21,11 @@ class MenuCategoryRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIVie
 class MenuItemListCreateView(generics.ListCreateAPIView):
     queryset = MenuItem.objects.filter(is_available=True)
     serializer_class = MenuItemSerializer
-    filter_backends = [filters.SearchFilter, filters.OrderingFilter]  #DjangoFilterBackend, 
-    # filterset_fields = ['category', 'is_available']
-    # renderer_classes = [JSONRenderer]
-    search_fields = ['name', 'description']
-    ordering_fields = ['price', 'preparation_time']
+    # filter_backends = [filters.SearchFilter, filters.OrderingFilter]  #DjangoFilterBackend, 
+    # # filterset_fields = ['category', 'is_available']
+    # # renderer_classes = [JSONRenderer]
+    # search_fields = ['name', 'description']
+    # ordering_fields = ['price', 'preparation_time']
 
 class MenuItemRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = MenuItem.objects.all()
@@ -36,9 +36,9 @@ class MenuItemRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 class TableListCreateView(generics.ListCreateAPIView):
     queryset = Table.objects.all()
     serializer_class = TableSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['status', 'capacity']
-    search_fields = ['number', 'location']
+    # filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    # filterset_fields = ['status', 'capacity']
+    # search_fields = ['number', 'location']
 
 class TableRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Table.objects.all()
@@ -49,9 +49,9 @@ class TableRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 class ReservationListCreateView(generics.ListCreateAPIView):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['table', 'customer_name']
-    ordering_fields = ['reservation_time', 'created_at']
+    # filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    # filterset_fields = ['table', 'customer_name']
+    # ordering_fields = ['reservation_time', 'created_at']
 
 class ReservationRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Reservation.objects.all()
@@ -62,9 +62,9 @@ class ReservationRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView
 class OrderListCreateView(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['table', 'status']
-    ordering_fields = ['created_at', 'total']
+    # filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    # filterset_fields = ['table', 'status']
+    # ordering_fields = ['created_at', 'total']
 
     def perform_create(self, serializer):
         serializer.save()
@@ -79,8 +79,8 @@ class OrderRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 class OrderItemListCreateView(generics.ListCreateAPIView):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['order', 'menu_item']
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['order', 'menu_item']
 
 class OrderItemRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = OrderItem.objects.all()
